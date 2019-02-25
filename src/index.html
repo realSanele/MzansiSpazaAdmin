@@ -16,6 +16,22 @@
   <!-- add to homescreen for ios -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAosPlPpr_9f3pHPtfEFJTQRJtY3Mz4WMM",
+      authDomain: "spazalocation.firebaseapp.com",
+      databaseURL: "https://spazalocation.firebaseio.com",
+      projectId: "spazalocation",
+      storageBucket: "spazalocation.appspot.com",
+      messagingSenderId: "476030295128"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <!-- End of Firebase -->
 </head>
 
 <body>

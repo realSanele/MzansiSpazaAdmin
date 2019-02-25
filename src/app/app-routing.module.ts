@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'myspazas', loadChildren: './myspazas/myspazas.module#MyspazasPageModule' },
   { path: 'addspaza', loadChildren: './addspaza/addspaza.module#AddspazaPageModule' },
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
 ];
 
 @NgModule({
