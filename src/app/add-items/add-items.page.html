@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>Add Items</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-img style="height: 100px; width: 100px; margin-left: 40%"  src="../../assets/cart.png" *ngIf="!setelectedImage"></ion-img>
+      <ion-img style="height: 100px; width: 100px" src="{{ setelectedImage }}" *ngIf="setelectedImage"></ion-img>
+      <ion-button fill="outline" style="margin-left: 40%" shape="round" (click)="uploadItemPic()"><ion-icon name="reverse-camera"></ion-icon></ion-button>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="catalogItemsForm">
+        <ion-item>
+          <ion-label style="font-size: 15pt" position="floating"><ion-icon name="cart"></ion-icon> Item Name</ion-label>
+          <ion-input style="font-size: 13pt" formControlName="itemName" type="text" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 15pt" position="floating"><ion-icon name="wallet"></ion-icon> Item Price (R)</ion-label>
+          <ion-input style="font-size: 13pt" formControlName="itemPrice" type="number" ></ion-input>
+        </ion-item>
+        <ion-button shape="round" style="height: 50px; margin-top: 5%" color="danger" [disabled]="!catalogItemsForm.valid" (click)="addItem()" class="add_button">ADD</ion-button>
+      </form>
+    </ion-card-content>
+
+  </ion-card>
+  
+
+  <!-- <ion-list *ngIf="catalogList.length !=0 && catalogList.length != null"> -->
+    <!-- <ion-item *ngFor="let item of catalogList" padding>
+      <ion-avatar slot="start">
+        <img src="../../assets/cart.png" *ngIf="!setelectedImage">
+        <img src="{{ setelectedImage }}" *ngIf="setelectedImage">
+      </ion-avatar>
+      <ion-card-title>{{item?.itemName}}</ion-card-title><br>
+      <ion-card-subtitle>R{{item?.itemPrice}}</ion-card-subtitle>
+    </ion-item> -->
+  <!-- </ion-list> -->
+
+  <ion-item-sliding *ngFor="let item of catalogList; let i = index" padding>
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="../../assets/cart.png" *ngIf="!setelectedImage">
+        <img src="{{ setelectedImage }}" *ngIf="setelectedImage">
+      </ion-avatar>
+      <h5>{{item?.itemName}}</h5>
+      <p>R {{item?.itemPrice}}</p>
+    </ion-item>
+    <ion-item-options side="end">
+      <ion-item-option (click)="removeItem(i)"><ion-icon name="close"></ion-icon></ion-item-option>
+      <!-- <ion-item-option color="danger" (click)="deleteItem(item)"><ion-icon name="trash"></ion-icon></ion-item-option> -->
+    </ion-item-options>
+  </ion-item-sliding>
+
+  <ion-button expand="full" style="height: 50px;" color="danger" shape="round" *ngIf="catalogList.length != 0" [disabled]="!catalogList.length != 0" (click)="submitCatalog(catalogList)" text-center padding>Submit</ion-button>
+</ion-content>

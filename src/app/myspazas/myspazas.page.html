@@ -1,9 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>myspazas</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button
+      text=""
+          icon="arrow-back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title text-center>My Spazas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <ion-card (click)="showCatalog(spaza?.spazaID)" *ngFor="let spaza of spazaList">
+    <ion-card-header>
+      <ion-img *ngIf="spaza?.downloadURL === 'none'" src="../../assets/spaza shop.jpg" height="80" ></ion-img>
+      <ion-img style="background-image: url('../../assets/spaza shop.jpg');" *ngIf="spaza?.downloadURL != 'none'" src="{{spaza?.downloadURL}}" height="90"></ion-img>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-card-title text-center>{{spaza?.spazaName}}</ion-card-title>
+      <ion-card-subtitle text-center>{{spaza?.township}}</ion-card-subtitle>
+      <!--Keep close to Nature's heart... and break clear away, once in awhile,
+      and climb a mountain or spend a week in the woods. Wash your spirit clean. -->
+    </ion-card-content>
+  </ion-card>
 
+  <div *ngIf="spazaList.length == 0">
+      <h3 class="no_items" text-center>No Spaza(s) To Show.</h3>
+    </div>
+
+  <ion-fab (click)="addSpaza()" style="font-size: 13pt" color="danger" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

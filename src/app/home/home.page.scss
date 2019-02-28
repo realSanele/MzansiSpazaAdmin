@@ -1,1 +1,15 @@
+.body{
+    background-image: url('../../assets/spaza.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 
+    form{
+        margin-top: 30%;
+        ion-item{
+            padding: 1%;
+            .error{
+                text-align: center; color: red
+            } 
+        }
+    }
+}

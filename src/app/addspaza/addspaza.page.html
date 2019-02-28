@@ -1,9 +1,43 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>addspaza</ion-title>
+    <ion-title text-center>Add Spaza</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <ion-card no-padding>
+    <ion-card-header no-padding>
+      <ion-img style="height: 180px;"  src="../../assets/spaza shop.jpg" *ngIf="!setelectedImage" no-padding></ion-img>
+      <ion-img style="height: 180px; width: 480px" src="{{ setelectedImage }}" *ngIf="setelectedImage" no-padding></ion-img>
+      <ion-button fill="outline" style="margin-left: 40%" shape="round" (click)="uploadSpazaPic()"><ion-icon name="reverse-camera"></ion-icon></ion-button>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="spazaForm">
+        <ion-item>
+          <ion-label style="font-size: 15pt" position="floating"><ion-icon name="bulb"></ion-icon>Spaza Name</ion-label>
+          <ion-input style="font-size: 13pt" formControlName="spazaName" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 15pt" position="floating"><ion-icon name="navigate"></ion-icon>City/Township</ion-label>
+          <ion-input style="font-size: 13pt" type="text" formControlName="city" ></ion-input>
+        </ion-item>
+        <!-- <ion-item>
+          <ion-label position="floating"><ion-icon name="locate"></ion-icon>Street Name</ion-label>
+          <ion-input type="text" formControlName="street"></ion-input>
+        </ion-item> -->
+        <ion-item>
+          <ion-label style="font-size: 15pt" position="stacked"><ion-icon name="locate"></ion-icon>Street Name</ion-label>
+          <input #myInput style="width: 100%; border: none; font-size: 13pt"  id="googlePlaces" autocomplete="on" formControlName="street" placeholder="Enter Street Name">
+        </ion-item>
+        
+        <ion-item>
+          <ion-label style="font-size: 15pt" position="floating"><ion-icon name="compass"></ion-icon>Stand/Unit/House number</ion-label>
+          <ion-input style="font-size: 13pt" type="text" formControlName="houseNO"></ion-input>
+        </ion-item>
+        <ion-button color="danger" expand="full" shape="round" [disabled]="!spazaForm.valid" (click)="addSpaza()">ADD</ion-button>
+      </form>
+    </ion-card-content>
+      
+  </ion-card>
+  
 </ion-content>

@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>Catalog</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of catalogList">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="../../assets/cart.png" *ngIf="item?.downloadURL === 'none'">
+          <img src="{{ item?.downloadURL }}" *ngIf="item?.downloadURL != 'none'">
+        </ion-avatar>
+        <ion-card-title>{{item?.itemName}}</ion-card-title>
+        <ion-card-subtitle>R {{item?.itemPrice}}</ion-card-subtitle>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="updateItem(item)"><ion-icon name="create"></ion-icon></ion-item-option>
+        <ion-item-option color="danger" (click)="deleteItem(item)"><ion-icon name="trash"></ion-icon></ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col col-1 col-sm-12 col-md-6 col-lg-6 col-xl-3>
+        <ion-card>
+            ONE
+        </ion-card>
+      </ion-col>
+      <ion-col col-1 col-sm-12 col-md-6 col-lg-6 col-xl-3>
+        <ion-card>
+          TWO
+        </ion-card>
+      </ion-col>
+      <ion-col col-1 col-sm-12 col-md-6 col-lg-6 col-xl-3>
+        <ion-card>
+          THREE
+        </ion-card>
+      </ion-col>
+      <ion-col col-1 col-sm-12 col-md-6 col-lg-6 col-xl-3>
+        <ion-card>
+          FOUR
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- <div> -->
+ <!-- col-sm-12 col-md-6 col-lg-6 col-xl-6 -->
+    <!-- <ion-row *ngFor = "let item of catalogList; let i = index">     
+      <ion-col col-6  >
+          <ion-card  class="test-card"    (click)="questionsPage(item.taskName,item.timer,item.timerType)">
+            <ion-card-header >
+                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            </ion-card-header>
+            <ion-card-content>
+              <ion-card-title>{{item?.itemName}}</ion-card-title>
+              <ion-card-subtitle>R {{item?.itemPrice}}</ion-card-subtitle>
+            </ion-card-content>
+          </ion-card>
+      </ion-col>   
+          
+    </ion-row> 
+  </div> -->
+
+  <div *ngIf="catalogList.length == 0">
+    <h3 class="no_items" text-center>No Item(s) To Show.</h3>
+  </div>
+
+  <ion-fab color="danger" style="font-size: 13pt" (click)="addToCatalog()" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
