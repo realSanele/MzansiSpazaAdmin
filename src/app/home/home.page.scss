@@ -1,15 +1,32 @@
-.body{
-    background-image: url('../../assets/spaza.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
+// .inner-scroll .scroll-y{
+//     //background-image: url(../../assets/background.jpg);
+//     background-color: rgb(249, 255, 178);
+//     background-size: cover;
+//     background-repeat: no-repeat;
 
-    form{
-        margin-top: 30%;
-        ion-item{
-            padding: 1%;
-            .error{
-                text-align: center; color: red
-            } 
-        }
+    // form{
+    //     margin-top: 30%;
+    //     ion-item{
+    //         padding: 1%;
+    //         .error{
+    //             text-align: center; color: red
+    //         } 
+    //     }
+    // }
+// }
+
+form{
+    // margin-top: 30%;
+    ion-item{
+        // padding: 1%;
+        padding: 2% 2% 1% 2%;
+        .error{
+            text-align: center; color: red
+        } 
     }
+}
+
+ion-content{
+    // --background: #fff url('../../assets/spaza shop.jpg') no-repeat center center / cover;
+    --background: rgb(245, 223, 215) /*url('../../assets/spaza shop.jpg')*/ no-repeat center center / cover;
 }

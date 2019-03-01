@@ -1,19 +1,22 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title text-center>Catalog</ion-title>
+  <ion-toolbar color="danger">
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+    <ion-title text-center>Catalogue</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item-sliding *ngFor="let item of catalogList">
-      <ion-item>
+  <ion-list style="background-color: rgb(245, 223, 215);">
+    <ion-item-sliding *ngFor="let item of catalogList" style="background-color:  rgb(245, 223, 215); padding-bottom: 5%;" padding>
+      <ion-item style="background-color: rgb(249, 255, 178)">
         <ion-avatar slot="start">
           <img src="../../assets/cart.png" *ngIf="item?.downloadURL === 'none'">
           <img src="{{ item?.downloadURL }}" *ngIf="item?.downloadURL != 'none'">
         </ion-avatar>
-        <ion-card-title>{{item?.itemName}}</ion-card-title>
-        <ion-card-subtitle>R {{item?.itemPrice}}</ion-card-subtitle>
+        <ion-card-title>{{item?.itemName}}</ion-card-title>&nbsp;&nbsp;&nbsp;
+        <ion-card-title>R {{item?.itemPrice}}</ion-card-title>
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option (click)="updateItem(item)"><ion-icon name="create"></ion-icon></ion-item-option>

@@ -1,4 +1,4 @@
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -24,7 +24,7 @@ export class MyspazasPage implements OnInit {
   userID : string;
 
 
-  constructor(private router: Router, private loadingCtrl: LoadingController) { }
+  constructor(private router: Router, private loadingCtrl: LoadingController,public navCtrl: NavController) { }
 
   async ngOnInit() {
     this.spazaList = [];
@@ -59,10 +59,11 @@ export class MyspazasPage implements OnInit {
   }
 
   addSpaza(){
-    this.router.navigate(['/addspaza']);
+    this.navCtrl.navigateForward('/addspaza');
+    // this.router.navigate(['/addspaza']);
   }
 
   showCatalog(spazaID:string){
-    this.router.navigate(["/catalog",{spazaID: spazaID,userID : this.userID}])
+    this.router.navigate(["/catalog",{spazaID: spazaID,userID : this.userID}]);
   }
 }

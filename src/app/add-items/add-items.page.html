@@ -1,19 +1,22 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
     <ion-title text-center>Add Items</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card style="background-color: rgb(249, 255, 178);">
     <ion-card-header>
-      <ion-img style="height: 100px; width: 100px; margin-left: 40%"  src="../../assets/cart.png" *ngIf="!setelectedImage"></ion-img>
-      <ion-img style="height: 100px; width: 100px" src="{{ setelectedImage }}" *ngIf="setelectedImage"></ion-img>
+      <ion-img style="height: 100px; width: 100px; margin-left: 38%"  src="../../assets/cart.png" *ngIf="!setelectedImage"></ion-img>
+      <ion-img style="height: 100px; width: 100px; margin-left: 38%" src="{{ setelectedImage }}" *ngIf="setelectedImage"></ion-img>
       <ion-button fill="outline" style="margin-left: 40%" shape="round" (click)="uploadItemPic()"><ion-icon name="reverse-camera"></ion-icon></ion-button>
     </ion-card-header>
     <ion-card-content>
       <form [formGroup]="catalogItemsForm">
-        <ion-item>
+        <ion-item style="margin-bottom: 5%">
           <ion-label style="font-size: 15pt" position="floating"><ion-icon name="cart"></ion-icon> Item Name</ion-label>
           <ion-input style="font-size: 13pt" formControlName="itemName" type="text" ></ion-input>
         </ion-item>
@@ -45,8 +48,8 @@
         <img src="../../assets/cart.png" *ngIf="!setelectedImage">
         <img src="{{ setelectedImage }}" *ngIf="setelectedImage">
       </ion-avatar>
-      <h5>{{item?.itemName}}</h5>
-      <p>R {{item?.itemPrice}}</p>
+      <h5>{{item?.itemName}}</h5> &nbsp;&nbsp;&nbsp;
+      <h5>R {{item?.itemPrice}}</h5>
     </ion-item>
     <ion-item-options side="end">
       <ion-item-option (click)="removeItem(i)"><ion-icon name="close"></ion-icon></ion-item-option>

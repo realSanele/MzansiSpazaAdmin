@@ -1,11 +1,14 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
     <ion-title text-center>Add Spaza</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card no-padding>
+  <ion-card no-padding style="background-color: rgb(249, 255, 178);">
     <ion-card-header no-padding>
       <ion-img style="height: 180px;"  src="../../assets/spaza shop.jpg" *ngIf="!setelectedImage" no-padding></ion-img>
       <ion-img style="height: 180px; width: 480px" src="{{ setelectedImage }}" *ngIf="setelectedImage" no-padding></ion-img>

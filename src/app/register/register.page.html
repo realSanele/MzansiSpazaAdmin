@@ -1,11 +1,15 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
     <ion-title text-center>User Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="signUpForm">
+    <h2 text-center style="color: #f25454; padding: 5% 0% 5% 0%;">Create Account</h2>
+  <form [formGroup]="signUpForm" >
     <ion-item>
       <ion-label style="font-size: 15pt" position="floating"><ion-icon name="person"></ion-icon>Name</ion-label>
       <ion-input style="font-size: 13pt" formControlName="name" type="text"></ion-input>
@@ -22,6 +26,6 @@
       <ion-label style="font-size: 15pt" position="floating"><ion-icon name="lock"></ion-icon>Password</ion-label>
       <ion-input style="font-size: 13pt" formControlName="password" type="password"></ion-input>
     </ion-item>
-    <ion-button expand="full" color="danger" shape="round" [disabled]="!signUpForm.valid" (click)="register()">Submit</ion-button>
+    <ion-button style="margin-top: 4%;" expand="full" color="danger" shape="round" [disabled]="!signUpForm.valid" (click)="register()">Submit</ion-button>
   </form>
 </ion-content>
