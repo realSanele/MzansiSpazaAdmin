@@ -47,6 +47,6 @@
     
     <ion-button style="height: 50px; margin-top: 5%; font-size: 13pt" expand="full" color="danger" shape="round" [disabled]="!loginForm.valid" (click)="login()"><ion-icon name="unlock"></ion-icon> Login</ion-button>
     <ion-button style="height: 50px; margin-top: 5%; font-size: 13pt" expand="full" color="danger" shape="round" (click)="signup()"><ion-icon name="person"></ion-icon> Sign-Up</ion-button>
-    <ion-button style="margin-top: 5%; font-size: 13pt" expand="full" fill="clear" color="dark" routerDirection="forward">Forgot Password. <a (click)="forgotPassword()">Click here</a></ion-button>
+    <ion-button style="margin-top: 5%; font-size: 13pt" expand="full" fill="clear" color="dark" routerDirection="forward" (click)="resetPassword()">Forgot Password. <a >Click here</a></ion-button>
   </form>
 </ion-content>

@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavController, LoadingController, AlertController, ToastController, Platform } from '@ionic/angular';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 
 declare var firebase;
 declare var google;
@@ -17,7 +18,7 @@ export class HomePage {
   
   loginForm: FormGroup;
   input;
-  constructor( public platform: Platform ,private fb: FormBuilder,private router: Router, private navCtrl:NavController,public loadingCtrl: LoadingController,private alertCtrl: AlertController,private toastCtrl: ToastController ){
+  constructor(private alertController: AlertController, public platform: Platform ,private fb: FormBuilder,private router: Router, private navCtrl:NavController,public loadingCtrl: LoadingController,private alertCtrl: AlertController,private toastCtrl: ToastController ){
     this.loginForm = fb.group({
       email: ['',Validators.compose([ Validators.pattern('^[a-zA-Z_.+-]+@[a-zA-Z-]+.[a-zA-Z0-9-.]+$'),Validators.required])],
       password: ['',Validators.compose([Validators.minLength(8),Validators.required])]
@@ -70,25 +71,51 @@ export class HomePage {
     await alert.present();
   }
 
+  async resetPassword(){
+    const alert = await this.alertController.create({
+      header: 'Reset Password',
+      inputs: [
+        {
+          name: 'email',
+          type: 'email',
+          // value: item.itemName,
+          placeholder: 'Enter Email'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            alert.dismiss();
+          }
+        }, {
+          text: 'Reset',
+          handler: (inputData) => {
+            // firebase.database().ref('/spazas/'+this.spazaID+'/catalog/'+item.itemID).update({
+            //   itemName : inputData.itemName,
+            //   itemPrice : inputData.itemPrice
+            // }).then(updateResult =>{
+            //   alert.dismiss();
+            //   this.ngOnInit();
+            // })
 
-  // showPopup(title, text) {
-  //   let alert = this.alertCtrl.create({
-  //     title: "<u>" + title + "</u>",
-  //     subTitle: text,
-  //     buttons: [
-  //       {
-  //         text: 'OK',
-  //         handler: data => {
-  //           if (this.isUserLoggedIn) {
-  //             this.navCtrl.popToRoot();
-  //           }
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   alert.present();
-  // }
+            firebase.auth().sendPasswordResetEmail(inputData.email).then(function() {
+              // Email sent.
+              this.showPopup("Confirm Email!", "An email with password reset link sent to your email.")
+              alert.dismiss();
+            },error => {
+              // loading.dismiss();
+              this.showPopup("Error!", "Invalide Email!");
+            });
+          }
+        }
+      ]
+    });
 
-
+    await alert.present();
+    
+  }
  
 }

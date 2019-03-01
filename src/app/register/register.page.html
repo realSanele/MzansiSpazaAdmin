@@ -3,7 +3,7 @@
       <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
         </ion-buttons>
-    <ion-title text-center>User Register</ion-title>
+    <ion-title text-center>Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,18 +14,51 @@
       <ion-label style="font-size: 15pt" position="floating"><ion-icon name="person"></ion-icon>Name</ion-label>
       <ion-input style="font-size: 13pt" formControlName="name" type="text"></ion-input>
     </ion-item>
+    <div *ngIf="signUpForm.controls.name.invalid && signUpForm.controls.name.dirty">
+    </div> 
+    <div style="text-align: center; color: red" class="error" *ngIf="signUpForm.get('name').hasError('required') && signUpForm.get('name').touched">
+      Please input your name!
+      </div>
+      <div style="text-align: center; color: red" class="error" *ngIf="signUpForm.get('name').hasError('pattern') && signUpForm.get('name').touched">
+        Email address name!
+      </div>
     <ion-item>
       <ion-label style="font-size: 15pt" position="floating"><ion-icon name="person"></ion-icon> Surname</ion-label>
       <ion-input style="font-size: 13pt" formControlName="surname" type="text"></ion-input>
     </ion-item>
+    <div *ngIf="signUpForm.controls.surname.invalid && signUpForm.controls.surname.dirty">
+    </div> 
+    <div style="text-align: center; color: red" class="error" *ngIf="signUpForm.get('surname').hasError('required') && signUpForm.get('surname').touched">
+      Please input your surname!
+      </div>
+      <div style="text-align: center; color: red" class="error" *ngIf="signUpForm.get('surname').hasError('pattern') && signUpForm.get('surname').touched">
+        Email address surname!
+      </div>
     <ion-item>
       <ion-label style="font-size: 15pt" position="floating"><ion-icon name="mail"></ion-icon> Email</ion-label>
       <ion-input style="font-size: 13pt" formControlName="email" type="email"></ion-input>
     </ion-item>
+    <div *ngIf="signUpForm.controls.email.invalid && signUpForm.controls.email.dirty">
+    </div> 
+    <div style="text-align: center; color: red" class="error" *ngIf="signUpForm.get('email').hasError('required') && signUpForm.get('email').touched">
+      Please input your email!
+      </div>
+      <div style="text-align: center; color: red" class="error" *ngIf="signUpForm.get('email').hasError('pattern') && signUpForm.get('email').touched">
+        Email address invalid!
+      </div>
     <ion-item>
       <ion-label style="font-size: 15pt" position="floating"><ion-icon name="lock"></ion-icon>Password</ion-label>
       <ion-input style="font-size: 13pt" formControlName="password" type="password"></ion-input>
     </ion-item>
-    <ion-button style="margin-top: 4%;" expand="full" color="danger" shape="round" [disabled]="!signUpForm.valid" (click)="register()">Submit</ion-button>
+    <div style="text-align: center; color: red" class="error" *ngIf="signUpForm.get('password').hasError('required') && signUpForm.get('password').touched">
+      Please input your password!
+    </div>
+    <div style="text-align: center; color: red" class="error" *ngIf="signUpForm.get('password').hasError('minlength') && signUpForm.get('password').touched">
+      Minimum 6 characters!
+    </div>
+    <div style="text-align: center; color: red" class="error" *ngIf="signUpForm.get('password').hasError('maxlength') && signUpForm.get('password').touched">
+      Maximum 12 characters!
+    </div>
+    <ion-button style="height: 50px; margin-top: 5%;" expand="full" color="danger" shape="round" [disabled]="!signUpForm.valid" (click)="register()">Submit</ion-button>
   </form>
 </ion-content>
